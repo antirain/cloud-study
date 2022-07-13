@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: consumer
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 1.116.155.98:8848
+        namespace:
+      config:
+        server-addr: 1.116.155.98:8848
+        file-extension: yaml
+        namespace: f4c70fd5-ec3b-4850-8dfb-0ee204e35476
+        group: DEFAULT_GROUP
+  profiles:
+    active: dev

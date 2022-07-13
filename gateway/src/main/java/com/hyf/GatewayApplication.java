@@ -1,0 +1,38 @@
+package com.hyf;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.gateway.route.RouteLocator;
+import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
+import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import reactor.core.publisher.Mono;
+
+@SpringBootApplication
+@EnableDiscoveryClient
+@EnableFeignClients
+public class GatewayApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(GatewayApplication.class,args);
+    }
+
+    @Bean
+    public RouteLocator myRoutes(RouteLocatorBuilder builder) {
+        String httpUri = "http://httpbin.org:80";
+        return builder.routes()
+                .route(p -> p
+                        .path("/get")
+                        .filters(f -> f.addRequestHeader("Hello", "World"))
+                        .uri(httpUri))
+
+                .build();
+    }
+
+    @GetMapping("/")
+    public void get(){
+
+    }
+}
