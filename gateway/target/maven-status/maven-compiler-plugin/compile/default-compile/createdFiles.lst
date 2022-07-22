@@ -1,0 +1,3 @@
+com\hyf\GatewayApplication.class
+com\hyf\config\AuthorizeGatewayFilterFactory.class
+com\hyf\config\AuthorizeGatewayFilterFactory$Config.class

@@ -12,12 +12,17 @@
         <module>provider</module>
         <module>consumer</module>
         <module>gateway</module>
+        <module>oauth</module>
+        <module>cloud-util</module>
     </modules>
 
     <properties>
         <spring-boot.version>2.3.2.RELEASE</spring-boot.version>
         <spring-cloud.version>Hoxton.SR9</spring-cloud.version>
         <spring-cloud-alibaba.version>2.2.6.RELEASE</spring-cloud-alibaba.version>
+        <mybatis-plus>3.5.1</mybatis-plus>
+        <hutool.version>5.8.2</hutool.version>
+        <mysql-version>5.1.10</mysql-version>
     </properties>
 
     <!--  只声明依赖，不引入依赖 -->
@@ -52,9 +57,34 @@
                 <artifactId>knife4j-spring-boot-starter</artifactId>
                 <version>2.0.7</version>
             </dependency>
-
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis-plus}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
-
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 
 </project>

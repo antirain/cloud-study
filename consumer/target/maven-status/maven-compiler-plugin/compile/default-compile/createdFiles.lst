@@ -1,0 +1,5 @@
+com\hyf\consumer\config\RestConfig.class
+com\hyf\consumer\ConsumerApplication.class
+com\hyf\consumer\config\OpenFeignConfig.class
+com\hyf\consumer\controller\ConsumerController.class
+com\hyf\consumer\service\ProviderClient.class

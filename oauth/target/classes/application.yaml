@@ -1,0 +1,21 @@
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  application:
+    name: oauth-server
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 1.116.155.98:8848
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:mysql://1.116.155.98:3306/oauth-auth-server?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+
+server:
+  port: 7787
+
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*Mapper.xml

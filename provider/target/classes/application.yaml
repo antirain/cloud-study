@@ -1,2 +1,6 @@
 server:
   port: 8762
+spring:
+  redis:
+    host: 1.116.155.98
+    port: 6379

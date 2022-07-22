@@ -1,0 +1,8 @@
+com\hyf\consumer\cache\UseTokenCache.class
+com\hyf\consumer\controller\HealthController.class
+com\hyf\consumer\service\impl\TokenServiceImpl.class
+com\hyf\consumer\controller\ProviderController.class
+com\hyf\consumer\service\TokenService.class
+com\hyf\consumer\cache\impl\RedisTokenCache.class
+com\hyf\consumer\cache\UseCache.class
+com\hyf\consumer\ProviderApplication.class
