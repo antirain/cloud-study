@@ -17,6 +17,10 @@ public class ControllerExceptionAdvice {
         ObjectError objectError = e.getBindingResult().getAllErrors().get(0);
         return new ResultVo(ResultCode.VALIDATE_ERROR, objectError.getDefaultMessage());
     }
+    @ExceptionHandler({IllegalArgumentException.class})
+    public ResultVo IllegalArgumentExceptionHandler(IllegalArgumentException e) {
+        return new ResultVo(ResultCode.VALIDATE_ERROR, e.getLocalizedMessage());
+    }
 
     @ExceptionHandler(APIException.class)
     public ResultVo APIExceptionHandler(APIException e) {

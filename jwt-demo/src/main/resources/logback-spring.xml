@@ -1,0 +1,155 @@
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+
+    <property name="LOG_PATH" value="./logs"/>
+    <springProperty name="APP_NAME" scope="context" source="spring.application.name"/>
+    <springProperty name="ServerIP" scope="context" source="spring.cloud.client.ip-address" defaultValue="0.0.0.0"/>
+    <springProperty name="ServerPort" scope="context" source="server.port" defaultValue="0000"/>
+    <springProperty name="LOG_MAX_FILESIZE" scope="context" source="logback.filesize" defaultValue="50MB"/>
+    <!-- 彩色日志 -->
+    <!-- 彩色日志依赖的渲染类 -->
+    <conversionRule conversionWord="clr" converterClass="org.springframework.boot.logging.logback.ColorConverter"/>
+    <conversionRule conversionWord="wex"
+                    converterClass="org.springframework.boot.logging.logback.WhitespaceThrowableProxyConverter"/>
+    <conversionRule conversionWord="wEx"
+                    converterClass="org.springframework.boot.logging.logback.ExtendedWhitespaceThrowableProxyConverter"/>
+
+    <!-- 彩色日志格式 -->
+    <property name="CONSOLE_LOG_PATTERN"
+              value="[${APP_NAME}:${ServerIP}:${ServerPort}] [%clr(%X{traceid}){yellow},%clr(%X{X-B3-TraceId}){yellow}] %clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%level){blue} %clr(${PID}){magenta} %clr([%thread]){orange} %clr(%logger){cyan} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"/>
+    <property name="CONSOLE_LOG_PATTERN_NO_COLOR"
+              value="[${APP_NAME}:${ServerIP}:${ServerPort}] [%X{traceid},%X{X-B3-TraceId}] %d{yyyy-MM-dd HH:mm:ss.SSS} %level ${PID} [%thread] %logger %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"/>
+
+
+
+    <!-- 控制台日志 -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <withJansi>true</withJansi>
+        <encoder>
+            <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+    <appender name="DEBUG_APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/debug.log</file>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>DEBUG</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <FileNamePattern>${LOG_PATH}/%d{yyyy-MM-dd}/debug-%d{yyyy-MM-dd}.%i.log</FileNamePattern>
+            <maxFileSize>10MB</maxFileSize>
+            <maxHistory>60</maxHistory>
+            <totalSizeCap>2GB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${CONSOLE_LOG_PATTERN_NO_COLOR}</pattern>
+            <charset>UTF-8</charset> <!-- 此处设置字符集 -->
+        </encoder>
+
+    </appender>
+
+    <appender name="INFO_APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/info.log</file>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>INFO</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <FileNamePattern>${LOG_PATH}/%d{yyyy-MM-dd}/info-%d{yyyy-MM-dd}.%i.log</FileNamePattern>
+            <maxFileSize>${LOG_MAX_FILESIZE}</maxFileSize>
+            <maxHistory>60</maxHistory>
+            <totalSizeCap>2GB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${CONSOLE_LOG_PATTERN_NO_COLOR}</pattern>
+            <charset>UTF-8</charset> <!-- 此处设置字符集 -->
+        </encoder>
+    </appender>
+
+    <appender name="WARN_APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/warn.log</file>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>WARN</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <FileNamePattern>${LOG_PATH}/%d{yyyy-MM-dd}/warn-%d{yyyy-MM-dd}.%i.log</FileNamePattern>
+
+            <maxFileSize>${LOG_MAX_FILESIZE}</maxFileSize>
+            <maxHistory>60</maxHistory>
+            <totalSizeCap>2GB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${CONSOLE_LOG_PATTERN_NO_COLOR}</pattern>
+            <charset>UTF-8</charset> <!-- 此处设置字符集 -->
+        </encoder>
+    </appender>
+
+    <appender name="ERROR_APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/error.log</file>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <FileNamePattern>${LOG_PATH}/%d{yyyy-MM-dd}/error-%d{yyyy-MM-dd}.%i.log</FileNamePattern>
+            <maxFileSize>${LOG_MAX_FILESIZE}</maxFileSize>
+            <maxHistory>60</maxHistory>
+            <totalSizeCap>2GB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${CONSOLE_LOG_PATTERN_NO_COLOR}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+<!--    <appender name="mqAppender1" class="org.apache.rocketmq.logappender.logback.RocketmqLogbackAppender">-->
+<!--        <tag>yourTag</tag>-->
+<!--        <topic>dzzz-qyxxpush-push-topic</topic>-->
+<!--        <producerGroup>producer-group</producerGroup>-->
+<!--        <nameServerAddress>192.168.0.121:9876</nameServerAddress>-->
+<!--        <layout>-->
+<!--            <pattern>%date %p %t - %m%n</pattern>-->
+<!--        </layout>-->
+<!--    </appender>-->
+
+<!--    <appender name="mqAsyncAppender1" class="ch.qos.logback.classic.AsyncAppender">-->
+<!--        <queueSize>1024</queueSize>-->
+<!--        <discardingThreshold>80</discardingThreshold>-->
+<!--        <maxFlushTime>2000</maxFlushTime>-->
+<!--        <neverBlock>true</neverBlock>-->
+<!--        <appender-ref ref="mqAppender1"/>-->
+<!--    </appender>-->
+
+
+    <logger level="WARN" name="org.apache.ignite"/>
+<!--    <logger level="INFO" name="com.alibaba.nacos.naming"/>-->
+<!--    <logger level="INFO" name="org.redisson.connection.DNSMonitor"/>-->
+    <logger level="WARN" name="com.alibaba.nacos.client.Worker.longPolling"/>
+    <Logger  level="ERROR" name="org.springframework.data.convert.CustomConversions"/>
+    <Logger  level="ERROR" name="com.alibaba.cloud.nacos.client.NacosPropertySourceBuilder"/>
+    <Logger  level="ERROR" name="org.springframework.boot.actuate.endpoint.EndpointId"/>
+
+<!--    <logger level="INFO" name="cn.cloud"/>-->
+<!--    <logger level="INFO" name="org.mybatis"/>-->
+<!--    <logger level="INFO" name="org.springframework"/>-->
+    <logger name="com.hyf" level="DEBUG"/>
+    <logger name="RocketmqClient" level="ERROR"/>
+    <logger name="RocketmqRemoting" level="ERROR"/>
+    <logger name="org.apache.ibatis" level="debug"/>
+    <logger name="com.baomidou" level="debug"/>
+
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="DEBUG_APPENDER"/>
+        <appender-ref ref="INFO_APPENDER"/>
+        <appender-ref ref="WARN_APPENDER"/>
+        <appender-ref ref="ERROR_APPENDER"/>
+<!--        <appender-ref ref="mqAsyncAppender1" />-->
+    </root>
+
+
+</configuration>

@@ -1,4 +1,5 @@
 com\hyf\cloud\config\JwtTokenStoreConfig.class
+com\hyf\cloud\controller\OauthController.class
 com\hyf\cloud\controller\UserController.class
 com\hyf\cloud\config\ResourceServiceConfig.class
 com\hyf\cloud\service\UserService.class

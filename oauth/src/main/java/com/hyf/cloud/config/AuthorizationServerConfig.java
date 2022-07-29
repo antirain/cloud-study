@@ -62,50 +62,51 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
         //允许表单认证
         security.allowFormAuthenticationForClients()
-                .checkTokenAccess("isAuthenticated()");
+//                .checkTokenAccess("isAuthenticated()")
+        ;
     }
 
-    @Override
-    public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        // 读取数据库的配置使用oss
-        clients.withClientDetails(clientDetails());
-    }
 //    @Override
 //    public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-//        /**
-//         *授权码模式
-//         *http://localhost:8080/oauth/authorize?response_type=code&client_id=client&redirect_uri=http://www.baidu.com&scope=all
-//         *http://localhost:8080/oauth/authorize?response_type=code&client_id=client
-//         *
-//         * password模式
-//         * http://localhost:8080/oauth/token?
-//         username=fox&password=123456&grant_type=password&client_id=client&client_secret=123123&scope=all
-//         *
-//         * 客户端模式
-//         * http://localhost:8080/oauth/token?grant_type=client_credentials&scope=all&client_id=client&client_s
-//         ecret=123123
-//         */
-//        clients.inMemory()
-//                //配置client_id
-//                .withClient("client")
-//                //配置client‐secret
-//                .secret(passwordEncoder.encode("123123"))
-//                //配置访问token的有效期
-//                .accessTokenValiditySeconds(48000)
-//                //配置刷新token的有效期
-//                .refreshTokenValiditySeconds(864000)
-//                //配置redirect_uri，用于授权成功后跳转
-//                .redirectUris("http://www.baidu.com")
-//                //配置申请的权限范围
-//                .scopes("all")
-//                //配置grant_type，表示授权类型
-//                /**
-//                 * 配置grant_type，表示授权类型
-//                 * authorization_code: 授权码
-//                 * password： 密码
-//                 * client_credentials: 客户端
-//                 * refresh_token: 更新令牌
-//                 */
-//                .authorizedGrantTypes("authorization_code", "password", "client_credentials", "refresh_token");
+//        // 读取数据库的配置使用oss
+//        clients.withClientDetails(clientDetails());
 //    }
+    @Override
+    public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
+        /**
+         *授权码模式
+         *http://localhost:8080/oauth/authorize?response_type=code&client_id=client&redirect_uri=http://www.baidu.com&scope=all
+         *http://localhost:8080/oauth/authorize?response_type=code&client_id=client
+         *
+         * password模式
+         * http://localhost:8080/oauth/token?
+         username=fox&password=123456&grant_type=password&client_id=client&client_secret=123123&scope=all
+         *
+         * 客户端模式
+         * http://localhost:8080/oauth/token?grant_type=client_credentials&scope=all&client_id=client&client_s
+         ecret=123123
+         */
+        clients.inMemory()
+                //配置client_id
+                .withClient("client")
+                //配置client‐secret
+                .secret(passwordEncoder.encode("123123"))
+                //配置访问token的有效期
+                .accessTokenValiditySeconds(48000)
+                //配置刷新token的有效期
+                .refreshTokenValiditySeconds(864000)
+                //配置redirect_uri，用于授权成功后跳转
+                .redirectUris("http://www.baidu.com")
+                //配置申请的权限范围
+                .scopes("all")
+                //配置grant_type，表示授权类型
+                /**
+                 * 配置grant_type，表示授权类型
+                 * authorization_code: 授权码
+                 * password： 密码
+                 * client_credentials: 客户端
+                 * refresh_token: 更新令牌
+                 */
+                .authorizedGrantTypes("authorization_code", "password", "client_credentials", "refresh_token");
+    }
 }

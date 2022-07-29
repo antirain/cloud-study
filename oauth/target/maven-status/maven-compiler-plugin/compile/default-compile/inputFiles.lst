@@ -2,6 +2,7 @@ D:\cloud-study\oauth\src\main\java\com\hyf\cloud\controller\UserController.java
 D:\cloud-study\oauth\src\main\java\com\hyf\cloud\config\ResourceServiceConfig.java
 D:\cloud-study\oauth\src\main\java\com\hyf\cloud\OauthApplication.java
 D:\cloud-study\oauth\src\main\java\com\hyf\cloud\config\JwtTokenStoreConfig.java
+D:\cloud-study\oauth\src\main\java\com\hyf\cloud\controller\OauthController.java
 D:\cloud-study\oauth\src\main\java\com\hyf\cloud\config\AuthorizationServerConfig.java
 D:\cloud-study\oauth\src\main\java\com\hyf\cloud\config\WebSecurityConfig.java
 D:\cloud-study\oauth\src\main\java\com\hyf\cloud\service\UserService.java

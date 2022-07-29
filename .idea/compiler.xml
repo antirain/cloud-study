@@ -8,14 +8,15 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="jwt" />
-        <module name="gateway" />
         <module name="provider" />
+        <module name="jwt-demo" />
         <module name="oauth" />
         <module name="cloud-util" />
         <module name="consumer" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="gateway" target="1.8" />
       <module name="jwt" target="1.8" />
     </bytecodeTargetLevel>
   </component>
