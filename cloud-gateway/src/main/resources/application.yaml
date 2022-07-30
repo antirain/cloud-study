@@ -1,0 +1,12 @@
+server:
+  port: 8050
+spring:
+  application:
+    name: cloud-gateway
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          # 网上找了一圈没有找到此处配置负载均衡的方式,似乎不支持
+          # 所以此处配置的获取公钥的地址直接访问的网关的地址,曲线救国的方式实现负载均衡
+          jwk-set-uri: http://localhost:8088/auth/getPublicKey # /auth是我的认证模块的context-path

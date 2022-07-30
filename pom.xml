@@ -14,6 +14,8 @@
         <module>oauth</module>
         <module>cloud-util</module>
         <module>jwt-demo</module>
+        <module>cloud-gateway</module>
+        <module>auth-server</module>
     </modules>
 
     <properties>
@@ -22,7 +24,7 @@
         <spring-cloud-alibaba.version>2.2.6.RELEASE</spring-cloud-alibaba.version>
         <mybatis-plus>3.5.1</mybatis-plus>
         <hutool.version>5.8.2</hutool.version>
-        <mysql-version>5.1.10</mysql-version>
+        <mysql-version>8.0.30</mysql-version>
     </properties>
 
     <!--  只声明依赖，不引入依赖 -->
