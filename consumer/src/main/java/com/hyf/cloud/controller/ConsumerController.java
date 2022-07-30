@@ -12,7 +12,6 @@ import java.util.function.Consumer;
 
 @RestController
 public class ConsumerController {
-
     @Autowired
     ProviderClient providerClient;
     @Autowired

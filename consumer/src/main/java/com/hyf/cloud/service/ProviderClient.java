@@ -10,4 +10,3 @@ public interface ProviderClient {
     @GetMapping("/hi")
     String hi(@RequestParam(value = "name", defaultValue = "forezp", required = false) String name);
 }
-
