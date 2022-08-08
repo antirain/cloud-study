@@ -1,0 +1,11 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 124.222.193.26
+        namespace:
+      config:
+        server-addr: 124.222.193.26
+        file-extension: yaml
+  profiles:
+    active: dev

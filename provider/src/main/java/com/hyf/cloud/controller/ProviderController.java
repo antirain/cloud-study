@@ -1,6 +1,7 @@
 package com.hyf.cloud.controller;
 
 import com.alibaba.fastjson2.JSONObject;
+import com.hyf.cloud.cache.UseCache;
 import com.hyf.cloud.cache.UseTokenCache;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +22,10 @@ public class ProviderController {
     String gender;
 
     @Autowired
-    private UseTokenCache tokenCache;
-    @GetMapping("/hi")
+    private UseCache tokenCache;
+
+    @GetMapping("/demo/hi")
     public String hi(@RequestParam(value = "name", defaultValue = "forezp",required = false) String name) throws InterruptedException {
-        Thread.sleep(3000);
         return "hello " + name + ", i'm provider ,my port:" + port;
     }
     @PostMapping("/post")

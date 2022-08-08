@@ -1,6 +1,6 @@
 package com.hyf.cloud.cache.impl;
 
-import com.hyf.cloud.cache.UseTokenCache;
+import com.hyf.cloud.cache.UseCache;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 @AllArgsConstructor
 @Service
-public class RedisTokenCache implements UseTokenCache {
+public class RedisTokenCache implements UseCache {
 
     private final StringRedisTemplate stringRedisTemplate;
     private final static String APP_TOKEN_KEY = "APP_TOKEN";

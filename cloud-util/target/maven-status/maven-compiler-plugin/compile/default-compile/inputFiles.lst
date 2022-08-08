@@ -1,5 +1,6 @@
 D:\cloud-study\cloud-util\src\main\java\com\hyf\cloud\vo\ResultVo.java
 D:\cloud-study\cloud-util\src\main\java\com\hyf\cloud\advice\ControllerResponseAdvice.java
+D:\cloud-study\cloud-util\src\main\java\com\hyf\cloud\constant\Oauth2Constant.java
 D:\cloud-study\cloud-util\src\main\java\com\hyf\cloud\exception\APIException.java
 D:\cloud-study\cloud-util\src\main\java\com\hyf\cloud\constant\ResultCode.java
 D:\cloud-study\cloud-util\src\main\java\com\hyf\cloud\constant\AppCode.java

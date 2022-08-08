@@ -8,8 +8,8 @@ public interface UseCache {
 
     String getKey();
 
-    Object getCache();
+    String getCache();
 
-    Object getCache(String key);
+    String getCache(String key);
 
 }

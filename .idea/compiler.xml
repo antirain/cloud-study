@@ -11,6 +11,7 @@
         <module name="cloud-gateway" />
         <module name="provider" />
         <module name="jwt-demo" />
+        <module name="es-study" />
         <module name="oauth" />
         <module name="cloud-util" />
         <module name="auth-server" />

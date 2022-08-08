@@ -15,7 +15,7 @@ public class OAuthOSSApplication7789Test {
 
     @Test
     public void t1(){
-        String password = passwordEncoder.encode("123123");
+        String password = passwordEncoder.encode("123456");
         System.out.println(password);
     }
 }
