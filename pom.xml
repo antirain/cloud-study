@@ -16,13 +16,14 @@
         <module>jwt-demo</module>
         <module>cloud-gateway</module>
         <module>es-study</module>
+        <module>redis-mysql</module>
     </modules>
 
     <properties>
         <spring-boot.version>2.3.2.RELEASE</spring-boot.version>
         <spring-cloud.version>Hoxton.SR9</spring-cloud.version>
         <spring-cloud-alibaba.version>2.2.6.RELEASE</spring-cloud-alibaba.version>
-        <mybatis-plus>3.5.1</mybatis-plus>
+        <mybatis-plus>3.5.2</mybatis-plus>
         <hutool.version>5.8.2</hutool.version>
         <mysql-version>8.0.30</mysql-version>
         <knife4j.version>2.0.7</knife4j.version>

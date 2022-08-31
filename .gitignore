@@ -35,6 +35,13 @@ build/
 
 
 ###other
-logs/
 *.log
 mybatis-plus-generator-run/src/main
+cloud-gateway/src/test/
+cloud-util/src/main/java/com/hyf/cloud/util/
+cloud-util/src/main/resources/
+cloud-util/src/test/
+es-study/src/test/
+jwt-demo/src/test/
+oauth/src/main/java/com/hyf/cloud/util/
+/logs/
