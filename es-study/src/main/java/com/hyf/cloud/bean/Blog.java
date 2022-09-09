@@ -8,6 +8,7 @@ import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Data
@@ -38,11 +39,11 @@ public class Blog {
     @Field(type = FieldType.Keyword)
     private String serialNum;
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss.SSS")
-    @Field(type= FieldType.Date, format= DateFormat.custom, pattern="yyyy-MM-dd HH:mm:ss.SSS")
-    private Date createTime;
+    @JsonFormat(pattern = "uuuu-MM-dd'T'HH:mm:ss")
+    @Field(type = FieldType.Date, format = DateFormat.date_hour_minute_second)
+    private LocalDateTime createTime;
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss.SSS")
-    @Field(type=FieldType.Date, format=DateFormat.custom, pattern="yyyy-MM-dd HH:mm:ss.SSS")
-    private Date updateTime;
+    @JsonFormat(pattern = "uuuu-MM-dd'T'HH:mm:ss")
+    @Field(type = FieldType.Date, format = DateFormat.date_hour_minute_second)
+    private LocalDateTime updateTime;
 }

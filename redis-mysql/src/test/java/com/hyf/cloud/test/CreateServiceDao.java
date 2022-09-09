@@ -26,9 +26,7 @@ public class CreateServiceDao {
 
     @BeforeEach
     public void before() {
-        dataSourceBuilder = new DataSourceConfig.Builder("jdbc:mysql://124.222.193.26:3306/oauth?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false", "root", "123456")
-                .dbQuery(new MySqlQuery())
-                .typeConvert(new MySqlTypeConvert());
+        dataSourceBuilder = new DataSourceConfig.Builder("jdbc:mysql://124.222.193.26:3306/oauth?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false", "root", "123456").dbQuery(new MySqlQuery()).typeConvert(new MySqlTypeConvert());
     }
 
     private static final String pathPrefix = "D:\\cloud-study\\redis-mysql\\src\\main\\";
@@ -40,25 +38,16 @@ public class CreateServiceDao {
 
     @Test
     public void generator() {
-        DataSourceConfig.Builder dataSourceBuilder = new DataSourceConfig.Builder("jdbc:mysql://124.222.193.26:3306/oauth?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false", "root", "123456")
-                .dbQuery(new MySqlQuery())
-                .typeConvert(new MySqlTypeConvert());
+        DataSourceConfig.Builder dataSourceBuilder = new DataSourceConfig.Builder("jdbc:mysql://124.222.193.26:3306/oauth?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false", "root", "123456").dbQuery(new MySqlQuery()).typeConvert(new MySqlTypeConvert());
 
-        FastAutoGenerator.create(dataSourceBuilder)
-                .globalConfig(builder -> {
-                    builder.author("heyf") // 设置作者
-                            .enableSwagger() // 开启 swagger 模式
-                            .outputDir(pathPrefix + "java"); // 指定输出目录
-                })
-                .packageConfig((builder) -> builder.parent(packageParent)
-                        .entity(domainPacageName)
-                        .mapper(mapperPacageName)
-                        .xml(xmlPacageName)
-                        .pathInfo(Collections.singletonMap(OutputFile.xml, pathPrefix + "resources\\" + xmlPacageName)))
-                .strategyConfig(builder -> {
-                    builder.addInclude("product") // 设置需要生成的表名
-                            .addTablePrefix("t_", "c_"); // 设置过滤表前缀
-                })
+        FastAutoGenerator.create(dataSourceBuilder).globalConfig(builder -> {
+            builder.author("heyf") // 设置作者
+                    .enableSwagger() // 开启 swagger 模式
+                    .outputDir(pathPrefix + "java"); // 指定输出目录
+        }).packageConfig((builder) -> builder.parent(packageParent).entity(domainPacageName).mapper(mapperPacageName).xml(xmlPacageName).pathInfo(Collections.singletonMap(OutputFile.xml, pathPrefix + "resources\\" + xmlPacageName))).strategyConfig(builder -> {
+            builder.addInclude("product") // 设置需要生成的表名
+                    .addTablePrefix("t_", "c_"); // 设置过滤表前缀
+        })
 
                 .templateEngine(new FreemarkerTemplateEngine()) // 使用Freemarker引擎模板，默认的是Velocity引擎模板
                 .execute();
@@ -82,25 +71,22 @@ public class CreateServiceDao {
 
     @Test
     public void thenCompose() throws ExecutionException, InterruptedException {
-        CompletableFuture<Integer> future = CompletableFuture
-                .supplyAsync(new Supplier<Integer>() {
-                    @Override
-                    public Integer get() {
-                        int number = new Random().nextInt(30);
-                        System.out.println("第一次运算：" + number);
-                        return number;
-                    }
-                })
-                .thenCompose(param -> CompletableFuture.supplyAsync(() -> {
-                    int number = param * 2;
-                    System.out.println("第二次运算：" + number);
-                    return number;
-                }))
-                .thenCompose(param -> CompletableFuture.supplyAsync(() -> {
-                    int number = param * 2;
-                    System.out.println("第二次运算：" + number);
-                    return number;
-                }));
+        CompletableFuture<Integer> future = CompletableFuture.supplyAsync(new Supplier<Integer>() {
+            @Override
+            public Integer get() {
+                int number = new Random().nextInt(30);
+                System.out.println("第一次运算：" + number);
+                return number;
+            }
+        }).thenCompose(param -> CompletableFuture.supplyAsync(() -> {
+            int number = param * 2;
+            System.out.println("第二次运算：" + number);
+            return number;
+        })).thenCompose(param -> CompletableFuture.supplyAsync(() -> {
+            int number = param * 2;
+            System.out.println("第二次运算：" + number);
+            return number;
+        }));
         Integer integer = future.get();
         System.out.println(integer);
 
@@ -138,8 +124,7 @@ public class CreateServiceDao {
             int number = new Random().nextInt(10);
             System.out.println("第一阶段：" + number);
             return number;
-        }).thenRun(() ->
-                System.out.println("thenRun 执行"));
+        }).thenRun(() -> System.out.println("thenRun 执行"));
 
     }
 
@@ -172,6 +157,27 @@ public class CreateServiceDao {
         Integer integer1 = future1.get();
         Integer integer2 = future2.get();
         System.out.println(integer1 + ":" + integer2);
+    }
+
+    @Test
+    public void completableDemo() throws InterruptedException {
+        CompletableFuture.supplyAsync(CreateServiceDao::getDouble).thenAccept(System.out::println).exceptionally(e -> {
+            e.printStackTrace();
+            return null;
+        });
+        Thread.sleep(200);
+    }
+
+    static Double getDouble() {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        if (Math.random() < 0.3) {
+            throw new RuntimeException("Error when get price");
+        }
+        return Math.random() * 20;
     }
 }
 
