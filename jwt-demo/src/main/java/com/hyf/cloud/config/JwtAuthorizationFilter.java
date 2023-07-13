@@ -3,6 +3,7 @@ package com.hyf.cloud.config;
 import com.hyf.cloud.util.JwtTokenUtils;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
@@ -46,7 +47,7 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
         String role = JwtTokenUtils.getUserRole(token);
         if (username != null) {
             return new UsernamePasswordAuthenticationToken(username, null,
-                    Collections.singleton(new SimpleGrantedAuthority(role))
+                    AuthorityUtils.commaSeparatedStringToAuthorityList(role)
             );
         }
         return null;

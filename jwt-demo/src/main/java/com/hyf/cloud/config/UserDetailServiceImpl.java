@@ -23,7 +23,6 @@ public class UserDetailServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        MyUser user = userService.getOne(new QueryWrapper<MyUser>().eq("username", username));
-        return user;
+        return userService.getOne(new QueryWrapper<MyUser>().eq("username", username));
     }
 }

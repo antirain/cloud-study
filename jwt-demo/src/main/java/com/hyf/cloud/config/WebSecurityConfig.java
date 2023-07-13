@@ -26,7 +26,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     /**放行的路径*/
     private final String[] PATH_RELEASE = {
             "/login",
-            "/all"
+            "/all",
+            "/register"
     };
     /***根据用户名找到用户*/
     @Autowired
@@ -56,7 +57,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
                 /** 指定支持基于表单的身份验证 */
                 .and().formLogin().permitAll()
-
                 /** 允许配置异常处理。可以自己传值进去 使用WebSecurityConfigurerAdapter时，将自动应用此WebSecurityConfigurerAdapter 。*/
                 .and().exceptionHandling()
 
